@@ -1,5 +1,6 @@
 import "./App.css";
 
+import { books } from "./Data/books";
 import { useState } from "react";
 
 import Input from "./Components/Input/Index";
@@ -12,6 +13,8 @@ const formDefault = {
 };
 
 function App() {
+  document.title = "Estante de Livros";
+
   const [form, setForm] = useState(formDefault);
 
   const inputChange = (event) => {
@@ -26,10 +29,21 @@ function App() {
     setForm(formDefault);
   };
 
+  const handleEdit = () => {
+    console.log("editando...");
+  };
+
+  const handleDelete = () => {
+    console.log("deletando...");
+  };
+
   return (
     <>
       <main>
-        <form onSubmit={handleSubmit} className="form__container">
+        <form
+          onSubmit={handleSubmit}
+          className="form__container border__bottom"
+        >
           <Input
             labelName="Título"
             inputType="text"
@@ -70,6 +84,34 @@ function App() {
           </select>
           <input type="submit" value="Enviar!" className="texto btn__geral" />
         </form>
+
+        <section className="books__container">
+          {books?.map((element) => {
+            return (
+              <div className="book--card__container">
+                <p className="subtitulo subtitulo-hover">{element.title}</p>
+                <p className="texto">de</p>
+                <p className="subtitulo subtitulo-hover">{element.author}</p>
+                <p className="texto">Gênero(s): {element.genre}</p>
+                <p className="texto">Status: {element.status}</p>
+                <div className="book--card__buttons">
+                  <input
+                    type="button"
+                    value="Editar"
+                    className="texto btn__geral"
+                    onClick={handleEdit}
+                  />
+                  <input
+                    type="button"
+                    value="Excluir"
+                    className="texto btn__geral"
+                    onClick={handleDelete}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </section>
       </main>
     </>
   );
