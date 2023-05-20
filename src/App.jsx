@@ -25,7 +25,18 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(form);
+
+    const newBook = {
+      id: books.length,
+      title: form.title,
+      author: form.author,
+      genre: form.genre,
+      status: form.status,
+    };
+
+    books.push(newBook);
+    console.log(books);
+
     setForm(formDefault);
   };
 
@@ -88,7 +99,7 @@ function App() {
         <section className="books__container">
           {books?.map((element) => {
             return (
-              <div className="book--card__container">
+              <div key={element.id} className="book--card__container">
                 <p className="subtitulo subtitulo-hover">{element.title}</p>
                 <p className="texto">de</p>
                 <p className="subtitulo subtitulo-hover">{element.author}</p>

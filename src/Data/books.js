@@ -7,7 +7,7 @@ export const books = [
     status: "Vou Ler",
   },
   {
-    id: 0,
+    id: 1,
     title: "Senhor dos Anéis 2",
     author: "R.R. Soares",
     genre: "Fantasia",
