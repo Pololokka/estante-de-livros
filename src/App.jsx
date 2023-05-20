@@ -81,7 +81,13 @@ function App() {
           <label htmlFor="status" className="subtitulo subtitulo-hover">
             Status do Livro
           </label>
-          <select id="status" className="texto" required onChange={inputChange}>
+          <select
+            id="status"
+            className="texto"
+            required
+            value={form.status}
+            onChange={inputChange}
+          >
             <option value="" className="texto"></option>
             <option value="Lendo" className="texto">
               Lendo
