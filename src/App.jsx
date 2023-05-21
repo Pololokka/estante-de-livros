@@ -4,6 +4,7 @@ import { books } from "./Data/books";
 import { useState } from "react";
 
 import Input from "./Components/Input/Index";
+import Modal from "./Components/Modal/Index";
 
 const formDefault = {
   title: "",
@@ -15,6 +16,7 @@ const formDefault = {
 function App() {
   document.title = "Estante de Livros";
 
+  const [show, setShow] = useState(false);
   const [form, setForm] = useState(formDefault);
 
   const inputChange = (event) => {
@@ -42,15 +44,31 @@ function App() {
 
   const handleEdit = () => {
     console.log("editando...");
+    handleShow();
   };
 
   const handleDelete = () => {
     console.log("deletando...");
   };
 
+  const handleShow = () => {
+    const showModal = !show;
+    setShow(showModal);
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+    handleShow();
+    setForm(formDefault);
+
+    console.log("salvando info...");
+  };
+
   return (
     <>
       <main>
+        <h1 className="titulo titulo-hover">Estante de Livros</h1>
+
         <form
           onSubmit={handleSubmit}
           className="form__container border__bottom"
@@ -129,6 +147,14 @@ function App() {
             );
           })}
         </section>
+
+        <Modal
+          show={show}
+          handleShow={handleShow}
+          handleSave={handleSave}
+          form={form}
+          inputChange={inputChange}
+        />
       </main>
     </>
   );
