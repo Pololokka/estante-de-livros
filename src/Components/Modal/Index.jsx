@@ -2,7 +2,7 @@ import "./Styles.css";
 
 import Input from "../Input/Index";
 
-const Modal = ({ show, handleShow, handleSave, form, inputChange }) => {
+const Modal = ({ show, info, handleSave, inputChange }) => {
   if (!show) {
     return null;
   } else {
@@ -18,21 +18,21 @@ const Modal = ({ show, handleShow, handleSave, form, inputChange }) => {
               <Input
                 labelName="Título"
                 inputType="text"
-                value={form.title}
+                value={info[0].title}
                 inputName="title"
                 inputChange={inputChange}
               />
               <Input
                 labelName="Autor"
                 inputType="text"
-                value={form.author}
+                value={info[0].author}
                 inputName="author"
                 inputChange={inputChange}
               />
               <Input
                 labelName="Gênero"
                 inputType="text"
-                value={form.genre}
+                value={info[0].genre}
                 inputName="genre"
                 inputChange={inputChange}
               />
@@ -42,7 +42,7 @@ const Modal = ({ show, handleShow, handleSave, form, inputChange }) => {
               <select
                 id="status"
                 className="texto"
-                value={form.status}
+                value={info[0].status}
                 onChange={inputChange}
               >
                 <option value="" className="texto"></option>

@@ -18,6 +18,7 @@ function App() {
 
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(formDefault);
+  const [resultFilter, setResultFilter] = useState();
 
   const inputChange = (event) => {
     const name = event.target.id;
@@ -42,7 +43,9 @@ function App() {
     setForm(formDefault);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (event) => {
+    const filterArray = event.target.id;
+    filterInfo(filterArray);
     console.log("editando...");
     handleShow();
   };
@@ -54,6 +57,12 @@ function App() {
   const handleShow = () => {
     const showModal = !show;
     setShow(showModal);
+  };
+
+  const filterInfo = (filterArray) => {
+    const result = books.filter((book) => book.id == filterArray);
+    setResultFilter(result);
+    console.log(result);
   };
 
   const handleSave = (event) => {
@@ -134,6 +143,7 @@ function App() {
                     type="button"
                     value="Editar"
                     className="texto btn__geral"
+                    id={element.id}
                     onClick={handleEdit}
                   />
                   <input
@@ -150,7 +160,7 @@ function App() {
 
         <Modal
           show={show}
-          handleShow={handleShow}
+          info={resultFilter}
           handleSave={handleSave}
           form={form}
           inputChange={inputChange}
