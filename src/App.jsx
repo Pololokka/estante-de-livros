@@ -7,6 +7,7 @@ import Input from "./Components/Input/Index";
 import Modal from "./Components/Modal/Index";
 
 const formDefault = {
+  id: "",
   title: "",
   author: "",
   genre: "",
@@ -18,12 +19,13 @@ function App() {
 
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(formDefault);
-  const [resultFilter, setResultFilter] = useState();
+  const [edit, setEdit] = useState(formDefault);
 
-  const inputChange = (event) => {
+  const inputChange = (event, state, setState) => {
     const name = event.target.id;
     const value = event.target.value;
-    setForm({ ...form, [name]: value });
+    setState({ ...state, [name]: value });
+    console.log(edit);
   };
 
   const handleSubmit = (event) => {
@@ -61,14 +63,28 @@ function App() {
 
   const filterInfo = (filterArray) => {
     const result = books.filter((book) => book.id == filterArray);
-    setResultFilter(result);
+    setEdit(result);
     console.log(result);
   };
 
   const handleSave = (event) => {
     event.preventDefault();
+
+    console.log(edit);
+    const editedBook = {
+      id: edit[0].id,
+      title: edit[0].title,
+      author: edit[0].author,
+      genre: edit[0].genre,
+      status: edit[0].status,
+    };
+
+    books[edit[0].id] = editedBook;
+    console.log(books);
+
     handleShow();
-    setForm(formDefault);
+
+    setEdit(formDefault);
 
     console.log("salvando info...");
   };
@@ -88,7 +104,7 @@ function App() {
             inputRequired={true}
             value={form.title}
             inputName="title"
-            inputChange={inputChange}
+            inputChange={() => inputChange(event, form, setForm)}
           />
           <Input
             labelName="Autor"
@@ -96,14 +112,14 @@ function App() {
             inputRequired={true}
             value={form.author}
             inputName="author"
-            inputChange={inputChange}
+            inputChange={() => inputChange(event, form, setForm)}
           />
           <Input
             labelName="Gênero"
             inputType="text"
             value={form.genre}
             inputName="genre"
-            inputChange={inputChange}
+            inputChange={() => inputChange(event, form, setForm)}
           />
           <label htmlFor="status" className="subtitulo subtitulo-hover">
             Status do Livro
@@ -113,7 +129,7 @@ function App() {
             className="texto"
             required
             value={form.status}
-            onChange={inputChange}
+            onChange={() => inputChange(event, form, setForm)}
           >
             <option value="" className="texto"></option>
             <option value="Lendo" className="texto">
@@ -160,10 +176,9 @@ function App() {
 
         <Modal
           show={show}
-          info={resultFilter}
+          info={edit}
           handleSave={handleSave}
-          form={form}
-          inputChange={inputChange}
+          inputChange={() => inputChange(event, edit, setEdit)}
         />
       </main>
     </>

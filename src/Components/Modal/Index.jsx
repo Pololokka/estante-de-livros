@@ -61,6 +61,7 @@ const Modal = ({ show, info, handleSave, inputChange }) => {
                 value="Enviar!"
                 className="texto btn__geral"
               />
+              {console.log(info)}
             </form>
           </div>
         </div>
