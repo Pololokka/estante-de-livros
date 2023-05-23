@@ -18,21 +18,21 @@ const Modal = ({ show, info, handleSave, inputChange }) => {
               <Input
                 labelName="Título"
                 inputType="text"
-                value={info[0].title}
+                value={info.title}
                 inputName="title"
                 inputChange={inputChange}
               />
               <Input
                 labelName="Autor"
                 inputType="text"
-                value={info[0].author}
+                value={info.author}
                 inputName="author"
                 inputChange={inputChange}
               />
               <Input
                 labelName="Gênero"
                 inputType="text"
-                value={info[0].genre}
+                value={info.genre}
                 inputName="genre"
                 inputChange={inputChange}
               />
@@ -42,7 +42,7 @@ const Modal = ({ show, info, handleSave, inputChange }) => {
               <select
                 id="status"
                 className="texto"
-                value={info[0].status}
+                value={info.status}
                 onChange={inputChange}
               >
                 <option value="" className="texto"></option>
@@ -61,7 +61,6 @@ const Modal = ({ show, info, handleSave, inputChange }) => {
                 value="Enviar!"
                 className="texto btn__geral"
               />
-              {console.log(info)}
             </form>
           </div>
         </div>

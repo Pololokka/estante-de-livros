@@ -25,7 +25,6 @@ function App() {
     const name = event.target.id;
     const value = event.target.value;
     setState({ ...state, [name]: value });
-    console.log(edit);
   };
 
   const handleSubmit = (event) => {
@@ -40,7 +39,6 @@ function App() {
     };
 
     books.push(newBook);
-    console.log(books);
 
     setForm(formDefault);
   };
@@ -48,7 +46,6 @@ function App() {
   const handleEdit = (event) => {
     const filterArray = event.target.id;
     filterInfo(filterArray);
-    console.log("editando...");
     handleShow();
   };
 
@@ -63,30 +60,32 @@ function App() {
 
   const filterInfo = (filterArray) => {
     const result = books.filter((book) => book.id == filterArray);
-    setEdit(result);
-    console.log(result);
+    const resultConverted = {
+      id: result[0].id,
+      title: result[0].title,
+      author: result[0].author,
+      genre: result[0].genre,
+      status: result[0].status,
+    };
+    setEdit(resultConverted);
   };
 
   const handleSave = (event) => {
     event.preventDefault();
 
-    console.log(edit);
     const editedBook = {
-      id: edit[0].id,
-      title: edit[0].title,
-      author: edit[0].author,
-      genre: edit[0].genre,
-      status: edit[0].status,
+      id: edit.id,
+      title: edit.title,
+      author: edit.author,
+      genre: edit.genre,
+      status: edit.status,
     };
 
-    books[edit[0].id] = editedBook;
-    console.log(books);
+    books[edit.id] = editedBook;
 
     handleShow();
 
     setEdit(formDefault);
-
-    console.log("salvando info...");
   };
 
   return (
