@@ -31,7 +31,7 @@ function App() {
     event.preventDefault();
 
     const newBook = {
-      id: books.length,
+      id: new Date(),
       title: form.title,
       author: form.author,
       genre: form.genre,
