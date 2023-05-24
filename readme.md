@@ -1,8 +1,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) ![technology - React](https://img.shields.io/badge/React-orange) ![technology - JS](https://img.shields.io/badge/JavaScript-yellow)
 
-# Link Tree
+# Estante de Livros
 
-link tree
+Página que exibe uma lista de livros, onde o usuário pode adicionar novos livros, ou alterar os existentes
 
 ## Tecnologias
 
@@ -15,7 +15,11 @@ link tree
 
 ### Home
 
-Página onde o usuário pode adicionar seus links
+Página onde o usuário pode adicionar seus livros. Cada livro gera um card, com dois botões.
+
+Clicar no botão de edição abre um modal, onde o usuário pode alterar as informações de um livro.
+
+Clicar no botão de remover exclui o livro em questão.
 
 ## Sobre
 

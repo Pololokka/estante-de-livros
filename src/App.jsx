@@ -53,13 +53,30 @@ function App() {
     const filterArray = event.target.name;
     filterInfo(filterArray);
 
-    console.log(edit);
+    const result = books.filter((book) => book.id == filterArray);
+    const resultConverted = {
+      id: result[0].id,
+      title: result[0].title,
+      author: result[0].author,
+      genre: result[0].genre,
+      status: result[0].status,
+    };
+
     const index = books.findIndex((object) => {
-      return object.id == edit.id;
+      return object.id == resultConverted.id;
     });
-    console.log(index);
-    console.log("teria apagado o ");
-    console.log(books[index]);
+
+    if (index > -1) {
+      books.splice(index, 1);
+    }
+
+    // const index = books.findIndex((object) => {
+    //   return object.id == edit.id;
+    // });
+
+    // console.log(edit.id);
+    // console.log("teria apagado o ");
+    // console.log(books[index]);
 
     // if (index > -1) {
     //   books.splice(index, 1);
