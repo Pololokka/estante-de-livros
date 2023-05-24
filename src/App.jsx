@@ -53,20 +53,17 @@ function App() {
     const filterArray = event.target.name;
     filterInfo(filterArray);
 
-    console.log(edit.id);
-    //const index = books.indexOf(edit.id);
+    console.log(edit);
     const index = books.findIndex((object) => {
       return object.id == edit.id;
     });
     console.log(index);
     console.log("teria apagado o ");
     console.log(books[index]);
+
     // if (index > -1) {
     //   books.splice(index, 1);
     // }
-
-    // console.log(edit.id);
-    // console.log(books.splice(1, edit.id));
   };
 
   const handleShow = () => {
