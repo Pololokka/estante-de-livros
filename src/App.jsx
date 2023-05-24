@@ -44,13 +44,29 @@ function App() {
   };
 
   const handleEdit = (event) => {
-    const filterArray = event.target.id;
+    const filterArray = event.target.name;
     filterInfo(filterArray);
     handleShow();
   };
 
-  const handleDelete = () => {
-    console.log("deletando...");
+  const handleDelete = (event) => {
+    const filterArray = event.target.name;
+    filterInfo(filterArray);
+
+    console.log(edit.id);
+    //const index = books.indexOf(edit.id);
+    const index = books.findIndex((object) => {
+      return object.id == edit.id;
+    });
+    console.log(index);
+    console.log("teria apagado o ");
+    console.log(books[index]);
+    // if (index > -1) {
+    //   books.splice(index, 1);
+    // }
+
+    // console.log(edit.id);
+    // console.log(books.splice(1, edit.id));
   };
 
   const handleShow = () => {
@@ -158,13 +174,14 @@ function App() {
                     type="button"
                     value="Editar"
                     className="texto btn__geral"
-                    id={element.id}
+                    name={element.id}
                     onClick={handleEdit}
                   />
                   <input
                     type="button"
                     value="Excluir"
                     className="texto btn__geral"
+                    name={element.id}
                     onClick={handleDelete}
                   />
                 </div>
